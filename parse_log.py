@@ -6,7 +6,7 @@ selected_file = "dummy.log"
 # Open() method with the "r", "a", "w', and "x" arguemnts will
     # make it read-only, append, write, and create respectively
 
-working_file = open(selected_file)
+working_file = open(selected_file, "r")
 
 '''
 with open(selected_file) as f:
