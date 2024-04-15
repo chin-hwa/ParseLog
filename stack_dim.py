@@ -13,4 +13,4 @@ sample_set = pd.DataFrame(dataset)
 new_set = pd.melt(sample_set, id_vars = ['Entity', 'ICP'],
         var_name = 'Account', value_name= 'Amount')
 
-print(new_set)
+#new_set.to_excel("output.xlsx")
