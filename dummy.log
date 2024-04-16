@@ -7,12 +7,12 @@ add some arrays: [32, 2, 'idiot', [0, 'w'], True]
 Let's add another Error word in here to confuse the program.
 
 ERROR: Line: 233, Error: No such member
-ERROR: ACTUAL;2024;Feb;YTD;<Entity Currency>;6001;[ICP None];[None];[None];FAKECLIENT;[None];23345.340000
+ERROR: ACTUAL;2024;Feb;YTD;000000;<Entity Currency>;6001;[ICP None];[None];[None];FAKECLIENT;[None];23345.340000
 ERROR: >>>>>>FAKECLIENT
 ERROR: Line: 2430, Error: Cell for Period Mar is not an input cell.
-ERROR: ACTUAL;2024;Mar;QTD;<Entity Currency>;1546;[ICP None];[None];[None];[None];[None];1000.230000
+ERROR: ACTUAL;2024;Mar;QTD;000000;<Entity Currency>;1546;[ICP None];[None];[None];[None];[None];1000.230000
 ERROR: >>>>>>
-ERROR: Line: 3221, Error: No such member
+ERROR: Line: 3221, Error: No such members
 ERROR: 1RE;2023;Jan;YTD;123456;<Entity Currency>;2132;[ICP None];[None];[None];[None];[None];44433.44; 600033
 ERROR: >>>>>>2132
 

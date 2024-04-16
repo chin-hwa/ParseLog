@@ -1,4 +1,5 @@
 import re
+# FYI, "re" library is reg ex
 import pandas as pd
 
 selected_file = "dummy.log"
