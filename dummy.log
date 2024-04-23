@@ -6,16 +6,20 @@ add some arrays: [32, 2, 'idiot', [0, 'w'], True]
 
 Let's add another Error word in here to confuse the program.
 
-ERROR: Line: 233, Error: No such member
-ERROR: ACTUAL;2024;Feb;YTD;000000;<Entity Currency>;6001;[ICP None];[None];[None];FAKECLIENT;[None];23345.340000
-ERROR: >>>>>>FAKECLIENT
-ERROR: Line: 2430, Error: Cell for Period Mar is not an input cell.
-ERROR: ACTUAL;2024;Mar;QTD;000000;<Entity Currency>;1546;[ICP None];[None];[None];[None];[None];1000.230000
-ERROR: >>>>>>
-ERROR: Line: 3221, Error: No such members
-ERROR: 1RE;2023;Jan;YTD;123456;<Entity Currency>;2132;[ICP None];[None];[None];[None];[None];44433.44
-ERROR: >>>>>>2132
-
+2023-04-28 15:23:34,043 ERROR [AIF]: Load data started: 4/4/2022 16:04:11.
+2023-04-28 15:23:34,043 ERROR [AIF]: Line: 233, Error: No such member
+2023-04-28 15:23:34,043 ERROR [AIF]: ACTUAL;2024;Feb;YTD;000000;<Entity Currency>;6001;[ICP None];[None];[None];FAKECLIENT;[None];23345.340000
+2023-04-28 15:23:34,043 ERROR [AIF]: >>>>>>FAKECLIENT
+2023-04-28 15:23:34,043 ERROR [AIF]:
+2023-04-28 15:23:34,043 ERROR [AIF]: Line: 2430, Error: Cell for Period Mar is not an input cell.
+2023-04-28 15:23:34,068 ERROR [AIF]: ACTUAL;2024;Mar;QTD;000000;<Entity Currency>;1546;[ICP None];[None];[None];[None];[None];1000.230000
+2023-04-28 15:23:34,068 ERROR [AIF]: >>>>>>
+2023-04-28 15:23:34,068 ERROR [AIF]:
+2023-04-28 15:23:34,068 ERROR [AIF]: Line: 3221, Error: No such member
+2023-04-28 15:23:34,068 ERROR [AIF]: 1RE;2023;Jan;YTD;123456;<Entity Currency>;2132;[ICP None];[None];[None];[None];[None];44433.44
+2023-04-28 15:23:34,068 ERROR [AIF]: >>>>>>2132
+2023-04-28 15:23:34,068 ERROR [AIF]:
+2023-04-28 15:23:34,068 ERROR [AIF]: Load data completed: 4/4/2022 16:06:58.
 
 this is also the end of text I don't want
 this will also have the word error in it
