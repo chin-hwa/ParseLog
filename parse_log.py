@@ -19,7 +19,12 @@ with open(selected_file) as f:
     for line in lines:
         my_data.append(re.split(";",line.strip()))
 
-sample_df = pd.DataFrame(my_data)
+sample_df = pd.DataFrame(my_data)#, columns = ['Error Message'])
+
+#first_row = sample_df['Error Message'].str[:6]
+#print(first_row)
+
+#print(sample_df.head())
 
 sample_df.to_excel("output.xlsx")
 

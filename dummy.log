@@ -13,7 +13,7 @@ ERROR: Line: 2430, Error: Cell for Period Mar is not an input cell.
 ERROR: ACTUAL;2024;Mar;QTD;000000;<Entity Currency>;1546;[ICP None];[None];[None];[None];[None];1000.230000
 ERROR: >>>>>>
 ERROR: Line: 3221, Error: No such members
-ERROR: 1RE;2023;Jan;YTD;123456;<Entity Currency>;2132;[ICP None];[None];[None];[None];[None];44433.44; 600033
+ERROR: 1RE;2023;Jan;YTD;123456;<Entity Currency>;2132;[ICP None];[None];[None];[None];[None];44433.44
 ERROR: >>>>>>2132
 
 
