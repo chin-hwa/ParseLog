@@ -18,6 +18,9 @@ Let's add another Error word in here to confuse the program.
 2023-04-28 15:23:34,068 ERROR [AIF]: Line: 3221, Error: No such member
 2023-04-28 15:23:34,068 ERROR [AIF]: 1RE;2023;Jan;YTD;123456;<Entity Currency>;2132;[ICP None];[None];[None];[None];[None];44433.44
 2023-04-28 15:23:34,068 ERROR [AIF]: >>>>>>2132
+2023-04-28 15:23:34,068 ERROR [AIF]: Line: 3832, Error: No write access for Period Feb.
+2023-04-28 15:23:34,068 ERROR [AIF]: ACTUAL;2020;Feb;YTD;841400;<Entity Currency>;20_1_SALES;[ICP None];[None];20_0_1X40;[None];[None];NODATA
+2023-04-28 15:23:34,068 ERROR [AIF]: >>>>>>
 2023-04-28 15:23:34,068 ERROR [AIF]:
 2023-04-28 15:23:34,068 ERROR [AIF]: Load data completed: 4/4/2022 16:06:58.
 

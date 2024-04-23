@@ -13,20 +13,29 @@ selected_file = "dummy.log"
 
 #  *** KEEP the Code Snippet for reference!!!***
 
+# The readlines() method reads all lines from a file
+    # This method is good if file size is small
+    # and performance is not important
+
 with open(selected_file) as f:
     my_data = []
     lines = f.readlines()
     for line in lines:
         my_data.append(re.split(";",line.strip()))
 
-sample_df = pd.DataFrame(my_data)#, columns = ['Error Message'])
+# There are 13 columns to output originally
+# Open to add the other columns
+dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
+              'Value', 'Account', 'ICP', 'Custom1', 'Custom2',
+              'Custom3', 'Custom4','Amount']#,'Error Value','Error Message']
+sample_df = pd.DataFrame(my_data, columns = dimensions)
 
 #first_row = sample_df['Error Message'].str[:6]
 #print(first_row)
 
-#print(sample_df.head())
+print(sample_df.head())
 
-sample_df.to_excel("output.xlsx")
+#sample_df.to_excel("output.xlsx")
 
 '''
 with open(selected_file) as f:
