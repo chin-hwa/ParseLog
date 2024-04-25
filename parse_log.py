@@ -30,15 +30,11 @@ dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
               'Custom3', 'Custom4','Amount']#,'Error Value','Error Message']
 sample_df = pd.DataFrame(my_data, columns = dimensions)
 
-print(sample_df[sample_df['Scenario'].str.contains('ERROR')])
+error_only_df = sample_df[sample_df['Scenario'].str.contains('ERROR')]
+error_only_df.reset_index(drop = True, inplace = True)
 
-
-#first_row = sample_df['Error Message'].str[:6]
-#print(first_row)
-
-#print(sample_df.head())
-
-#sample_df.to_excel("output.xlsx")
+print(error_only_df)
+#test_df.to_excel("output.xlsx")
 
 '''
 with open(selected_file) as f:
@@ -56,3 +52,15 @@ for line in f:
 #print(working_file.read())
 
 #working_file.close()
+
+
+# This is code to set index to equal 1
+
+'''
+df.index += 1
+
+or
+
+df = pd.DataFrame({'Col Name': ['one', 'two', 'three']},
+    index = pd.RangeIndex(start = 1, stop = 4, name = 'index'))
+'''
