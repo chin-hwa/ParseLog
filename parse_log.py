@@ -30,10 +30,13 @@ dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
               'Custom3', 'Custom4','Amount']#,'Error Value','Error Message']
 sample_df = pd.DataFrame(my_data, columns = dimensions)
 
+print(sample_df[sample_df['Scenario'].str.contains('ERROR')])
+
+
 #first_row = sample_df['Error Message'].str[:6]
 #print(first_row)
 
-print(sample_df.head())
+#print(sample_df.head())
 
 #sample_df.to_excel("output.xlsx")
 
