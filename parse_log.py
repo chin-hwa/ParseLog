@@ -52,15 +52,3 @@ for line in f:
 #print(working_file.read())
 
 #working_file.close()
-
-
-# This is code to set index to equal 1
-
-'''
-df.index += 1
-
-or
-
-df = pd.DataFrame({'Col Name': ['one', 'two', 'three']},
-    index = pd.RangeIndex(start = 1, stop = 4, name = 'index'))
-'''
