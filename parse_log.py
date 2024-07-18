@@ -30,11 +30,15 @@ dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
               'Custom3', 'Custom4','Amount']#,'Error Value','Error Message']
 sample_df = pd.DataFrame(my_data, columns = dimensions)
 
+# Only keep lines with 'ERROR' in the DataFrame
 error_only_df = sample_df[sample_df['Scenario'].str.contains('ERROR')]
 error_only_df.reset_index(drop = True, inplace = True)
+middle_df = error_only_df.drop(error_only_df.head(1).index)\
+                         .drop(error_only_df.tail(1).index)
 
-print(error_only_df)
-#test_df.to_excel("output.xlsx")
+
+print(middle_df)
+#middle_df.to_excel("output13.xlsx")
 
 '''
 with open(selected_file) as f:
