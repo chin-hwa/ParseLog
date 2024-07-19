@@ -36,9 +36,11 @@ error_only_df.reset_index(drop = True, inplace = True)
 middle_df = error_only_df.drop(error_only_df.head(1).index)\
                          .drop(error_only_df.tail(1).index)
 
+middle_df['Scenario'] = middle_df['Scenario'].str[37:]
 
-print(middle_df)
-#middle_df.to_excel("output13.xlsx")
+
+
+#middle_df.to_excel("output14.xlsx")
 
 '''
 with open(selected_file) as f:
