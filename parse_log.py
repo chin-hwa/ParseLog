@@ -43,15 +43,24 @@ middle_df['Scenario'] = middle_df['Scenario'].str[37:]
 
 # Create a new column called 'Error Values' from
     # the 3rd row in the 'Scenario' column
+
+# 1st, create a list for error values
 raw_EV = []
 for values in middle_df['Scenario']:
     if ">>>>>>" in values:
-        raw_EV.append(values)
+        raw_EV.append(values[6:])
     else:
-        raw_EV.append('')
+        raw_EV.append(None)
 
-raw_EV = [elem.replace('>>>>>>', '') for elem in raw_EV]
-print(raw_EV)
+# 2nd, convert the list into numpy array and
+    # shift the values over by -1
+EV_array = np.array(raw_EV)
+adj_EV = np.roll(EV_array, -1)
+
+# Last, insert the array as a new column
+middle_df['Error Value'] = adj_EV.tolist()
+
+
 
 #middle_df.to_excel("output3.xlsx")
 
