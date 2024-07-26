@@ -1,5 +1,4 @@
 import re
-# FYI, "re" library is reg ex
 import pandas as pd
 import numpy as np
 
@@ -25,10 +24,10 @@ with open(selected_file) as f:
         my_data.append(re.split(";",line.strip()))
 
 # There are 13 columns to output originally.  Need 3 more columns
-dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
+initial_dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
               'Value', 'Account', 'ICP', 'Custom1', 'Custom2',
               'Custom3', 'Custom4','Amount']
-sample_df = pd.DataFrame(my_data, columns = dimensions)
+sample_df = pd.DataFrame(my_data, columns = initial_dimensions)
 
 # Only keep lines with 'ERROR' in the DataFrame
 error_only_df = sample_df[sample_df['Scenario'].str.contains('ERROR')]
@@ -60,7 +59,21 @@ adj_EV = np.roll(EV_array, -1)
 # Last, insert the array as a new column
 middle_df['Error Value'] = adj_EV.tolist()
 
+# Create new columns called 'Line No' and
+    # 'Error Message' from the same column
 
+raw_line = []
+for values in middle_df['Scenario']:
+    result = re.search('Line: (.*),', values)
+    if "Line: " in values:
+        raw_line.append(int(result.group(1)))
+    else:
+        raw_line.append(None)
+
+line_array = np.array(raw_line)
+formatted_line = np.roll(line_array, 1)
+
+middle_df['Line No'] = formatted_line.tolist()
 
 #middle_df.to_excel("output3.xlsx")
 
