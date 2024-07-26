@@ -60,7 +60,7 @@ adj_EV = np.roll(EV_array, -1)
 middle_df['Error Value'] = adj_EV.tolist()
 
 # Create new columns called 'Line No' and
-    # 'Error Message' from the same column
+    # sfrom the 'Scenario' column
 
 raw_line = []
 for values in middle_df['Scenario']:
@@ -75,6 +75,27 @@ formatted_line = np.roll(line_array, 1)
 
 middle_df['Line No'] = formatted_line.tolist()
 
-#middle_df.to_excel("output3.xlsx")
+# Create new columns called 'Line No' and
+    # from the 'Scenario' column
+
+raw_EM = []
+for values in middle_df['Scenario']:
+    if "Line: " in values:
+        raw_EM.append(values.partition(', Error: ')[2])
+    else:
+        raw_EM.append(None)
+
+em_array = np.array(raw_EM)
+formatted_EM = np.roll(em_array, 1)
+
+middle_df['Error Message'] = formatted_EM.tolist()
+
+# Drop all empty rows.  We need to use the column with 'Nan'
+    # within the column values.  Pandas does not like
+    # using empty strings.
+
+final_df = middle_df.dropna(subset = ['Line No'])
+
+#final_df.to_excel("output3.xlsx")
 
 #working_file.close()
