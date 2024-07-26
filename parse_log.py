@@ -4,15 +4,6 @@ import numpy as np
 
 selected_file = "dummy.log"
 
-# Open() method with the "r", "a", "w', and "x" arguemnts will
-    # make it read-only, append, write, and create respectively
-
-# Be sure to uncomment the .close() below if using this one
-#working_file = open(selected_file, "r")
-
-
-#  *** KEEP the Code Snippet for reference!!!***
-
 # The readlines() method reads all lines from a file
     # This method is good if file size is small
     # and performance is not important
@@ -31,7 +22,6 @@ sample_df = pd.DataFrame(my_data, columns = initial_dimensions)
 
 # Only keep lines with 'ERROR' in the DataFrame
 error_only_df = sample_df[sample_df['Scenario'].str.contains('ERROR')]
-#error_only_df.reset_index(drop = True, inplace = True)
 
 # Remove the 1st and last line of "ERROR" lines
 middle_df = error_only_df.drop(error_only_df.head(1).index)\
@@ -60,23 +50,35 @@ adj_EV = np.roll(EV_array, -1)
 middle_df['Error Value'] = adj_EV.tolist()
 
 # Create new columns called 'Line No' and
-    # sfrom the 'Scenario' column
+    # from the 'Scenario' column
 
 raw_line = []
 for values in middle_df['Scenario']:
+
+# Use regex to capture the text between:
+    # 'Line: '
+    # and
+    # ', '
     result = re.search('Line: (.*),', values)
     if "Line: " in values:
         raw_line.append(int(result.group(1)))
     else:
         raw_line.append(None)
 
+# Again, convert list into numpy array and shift
+    # the values in the opposite direction this time
 line_array = np.array(raw_line)
 formatted_line = np.roll(line_array, 1)
 
+# Add to dataframe
 middle_df['Line No'] = formatted_line.tolist()
 
-# Create new columns called 'Line No' and
-    # from the 'Scenario' column
+# Create new column called 'Line No' from the
+    # 'Scenario' column.
+    # The steps are very similar to the ones
+    # above, but this time, a simple string
+    # method called str.partition() will capture
+    # all text after the delimiter
 
 raw_EM = []
 for values in middle_df['Scenario']:
@@ -93,9 +95,28 @@ middle_df['Error Message'] = formatted_EM.tolist()
 # Drop all empty rows.  We need to use the column with 'Nan'
     # within the column values.  Pandas does not like
     # using empty strings.
+no_null_df = middle_df.dropna(subset = ['Line No'])
 
-final_df = middle_df.dropna(subset = ['Line No'])
+# Rearrange the columns to our liking
+dimensions = ['Line No',
+              'Scenario',
+              'Year', 
+              'Period', 
+              'View',
+              'Entity',
+              'Value',
+              'Account',
+              'ICP',
+              'Custom1',
+              'Custom2',
+              'Custom3',
+              'Custom4',
+              'Amount',
+              'Error Value',
+              'Error Message']
+final_df = no_null_df[dimensions]
+
+# Reset the index numbers for all rows
+final_df.reset_index(drop = True, inplace = True)
 
 #final_df.to_excel("output3.xlsx")
-
-#working_file.close()
