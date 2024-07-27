@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from tkinter import *
 from tkinter import filedialog
-'''
+
 def openFile():
     global selected_file 
     selected_file = filedialog.askopenfilename()
@@ -17,12 +17,13 @@ welcome_text.pack()
 # Button for opening log file
 open_button = Button(text = 'Select Log File', command = openFile)
 open_button.pack()
+
+# CLosing message
+close_text = Label(root, text = "After selecting the log file, close the window to run the app.")
+close_text.pack()
 root.mainloop()
 
-print(selected_file)
-
-'''
-selected_file = "C:/Users/Chin-Hwa/Documents/Python Repo/dummy.log"
+#selected_file = 'C:/Users/Chin-Hwa/Documents/Python Repo/dummy.log'
 
 # The readlines() method reads all lines from a file
     # This method is good if file size is small
@@ -30,7 +31,7 @@ selected_file = "C:/Users/Chin-Hwa/Documents/Python Repo/dummy.log"
 
 # Take the log file and read every line, and use
     # the semicolon as the delimiter
-with open("C:/Users/Chin-Hwa/Documents/Python Repo/dummy.log") as raw_file:
+with open(selected_file) as raw_file:
     my_data = []
     lines = raw_file.readlines()
     for line in lines:
@@ -145,4 +146,4 @@ final_df = no_null_df[dimensions]
 # Reset the index numbers for all rows
 final_df.reset_index(drop = True, inplace = True)
 
-#final_df.to_excel("output.xlsx")
+final_df.to_excel("output.xlsx")
