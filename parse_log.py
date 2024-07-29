@@ -1,12 +1,14 @@
 import re
 import pandas as pd
 import numpy as np
+import os
 from tkinter import *
 from tkinter import filedialog
 
 def openFile():
     global selected_file 
     selected_file = filedialog.askopenfilename()
+    root.destroy()
 
 # Create the window for the app
 root = Tk()
@@ -19,11 +21,11 @@ open_button = Button(text = 'Select Log File', command = openFile)
 open_button.pack()
 
 # CLosing message
-close_text = Label(root, text = "After selecting the log file, close the window to run the app.")
+close_text = Label(root, text = "After selecting the log file, close this app to run the file.")
 close_text.pack()
 root.mainloop()
 
-#selected_file = 'C:/Users/Chin-Hwa/Documents/Python Repo/dummy.log'
+#selected_file = 'dummy.log's
 
 # The readlines() method reads all lines from a file
     # This method is good if file size is small
@@ -37,7 +39,6 @@ with open(selected_file) as raw_file:
     for line in lines:
         my_data.append(re.split(";",line.strip()))
 
-print(my_data)
 # Convert the list from the lines read into a DataFrame
 # There are 13 columns to output originally.  Need 3 more columns
 initial_dimensions = ['Scenario', 'Year', 'Period', 'View', 'Entity',
@@ -52,6 +53,9 @@ error_only_df = sample_df[sample_df['Scenario'].str.contains('ERROR')]
     # These only contain the initial timestamp
 middle_df = error_only_df.drop(error_only_df.head(1).index)\
                          .drop(error_only_df.tail(1).index)
+
+# Create timestamp column
+middle_df['Timestamp'] = middle_df['Scenario'].str[:24]
 
 # Cut off the leftmost 37 characters of the 'Scenario' column
     # These are the timestamp prefix of the 1st column
@@ -126,6 +130,7 @@ no_null_df = middle_df.dropna(subset = ['Line No'])
 
 # Rearrange the columns to our liking
 dimensions = ['Line No',
+              'Timestamp',
               'Scenario',
               'Year', 
               'Period', 
@@ -146,4 +151,8 @@ final_df = no_null_df[dimensions]
 # Reset the index numbers for all rows
 final_df.reset_index(drop = True, inplace = True)
 
-final_df.to_excel("output.xlsx")
+# Save the log filename as the output
+filename = os.path.splitext(os.path.basename(selected_file))[0]
+output_excel = filename + ".xlsx"
+
+final_df.to_excel(output_excel)
