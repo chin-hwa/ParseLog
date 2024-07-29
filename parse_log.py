@@ -25,7 +25,7 @@ close_text = Label(root, text = "After selecting the log file, close this app to
 close_text.pack()
 root.mainloop()
 
-#selected_file = 'dummy.log's
+#selected_file = 'dummy.log'
 
 # The readlines() method reads all lines from a file
     # This method is good if file size is small
